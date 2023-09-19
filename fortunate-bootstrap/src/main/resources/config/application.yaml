@@ -1,0 +1,8 @@
+spring:
+  banner:
+    location: classpath:banner/banner.txt
+  datasource:
+    username: root
+    password: lzm549468
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.31.88:3306/lottery
