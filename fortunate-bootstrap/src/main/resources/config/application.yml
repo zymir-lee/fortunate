@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: fortunate
   banner:
     location: classpath:banner/banner.txt
   datasource:
