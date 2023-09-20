@@ -19,6 +19,7 @@
         <module>fortunate-repository</module>
         <module>fortunate-service</module>
         <module>fortunate-api</module>
+        <module>fortunate-support</module>
     </modules>
 
     <properties>
@@ -37,6 +38,12 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.20</version>
+        </dependency>
+
+        <dependency>
+            <groupId>pers.zymir</groupId>
+            <artifactId>fortunate-support</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
