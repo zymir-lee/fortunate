@@ -22,11 +22,15 @@ public class InevitableDrawAlgorithmService implements DrawAlgorithmService {
             return Optional.empty();
         }
         if (onlyOneAward(awardProbabilities)) {
-            AwardProbabilityDTO soleAward = awardProbabilities.get(0);
+            AwardProbabilityDTO soleAward = getSoleAward(awardProbabilities);
             return Optional.of(soleAward.getAwardId());
         }
         averageAwardProbability(awardProbabilities);
         return Optional.ofNullable(executeInevitableAlgorithm(awardProbabilities));
+    }
+
+    private AwardProbabilityDTO getSoleAward(List<AwardProbabilityDTO> awardProbabilities) {
+        return awardProbabilities.get(0);
     }
 
     private Long executeInevitableAlgorithm(List<AwardProbabilityDTO> awardProbabilities) {
