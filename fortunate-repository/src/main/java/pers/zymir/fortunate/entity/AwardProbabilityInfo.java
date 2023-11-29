@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class AwardAllocation {
+public class AwardProbabilityInfo {
     @TableId(type = IdType.AUTO)
     private Long id;
     private Long awardAllocationId;
