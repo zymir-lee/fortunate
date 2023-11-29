@@ -17,15 +17,25 @@ public class InevitableDrawAlgorithmService implements DrawAlgorithmService {
 
     @Override
     public Optional<Long> execute(List<AwardProbabilityDTO> awardProbabilities, Set<Long> excludeAwardIds) {
+
+        // 1.排除无法参与抽奖的奖品
         excludeDisableAward(awardProbabilities, excludeAwardIds);
+
+        // 2.无任何奖品可以抽取
         if (noAnyAward(awardProbabilities)) {
             return Optional.empty();
         }
+
+        // 3.只剩下一个奖品 直接返回中奖信息（当前算法为必中奖算法）
         if (onlyOneAward(awardProbabilities)) {
             AwardProbabilityDTO soleAward = getSoleAward(awardProbabilities);
             return Optional.of(soleAward.getAwardId());
         }
+
+        // 4.按照剩余奖品概率重新计算概率
         averageAwardProbability(awardProbabilities);
+
+        // 5.执行抽奖算法
         return Optional.ofNullable(executeInevitableAlgorithm(awardProbabilities));
     }
 
