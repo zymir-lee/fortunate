@@ -30,7 +30,7 @@ public class DrawAlgorithmTest {
         awardOne.setAwardId(1L);
         awardProbabilities.add(awardOne);
 
-        Optional<Long> awardIdOptional = drawAlgorithmService.executeAlgorithm(awardProbabilities, new HashSet<>());
+        Optional<Long> awardIdOptional = drawAlgorithmService.execute(awardProbabilities, new HashSet<>());
         Assert.assertTrue(awardIdOptional.isPresent());
         Long awardId = awardIdOptional.get();
         System.out.println("奖品ID: " + awardId);

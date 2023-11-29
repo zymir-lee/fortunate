@@ -16,9 +16,9 @@ import java.util.Set;
 public class InevitableDrawAlgorithmService implements DrawAlgorithmService {
 
     @Override
-    public Optional<Long> executeAlgorithm(List<AwardProbabilityDTO> awardProbabilities, Set<Long> excludeAwardIds) {
+    public Optional<Long> execute(List<AwardProbabilityDTO> awardProbabilities, Set<Long> excludeAwardIds) {
         excludeDisableAward(awardProbabilities, excludeAwardIds);
-        if (CollUtil.isEmpty(awardProbabilities)) {
+        if (noAnyAward(awardProbabilities)) {
             return Optional.empty();
         }
         if (onlyOneAward(awardProbabilities)) {
@@ -27,6 +27,10 @@ public class InevitableDrawAlgorithmService implements DrawAlgorithmService {
         }
         averageAwardProbability(awardProbabilities);
         return Optional.ofNullable(executeInevitableAlgorithm(awardProbabilities));
+    }
+
+    private boolean noAnyAward(List<AwardProbabilityDTO> awardProbabilities) {
+        return CollUtil.isEmpty(awardProbabilities);
     }
 
     private AwardProbabilityDTO getSoleAward(List<AwardProbabilityDTO> awardProbabilities) {
@@ -82,7 +86,7 @@ public class InevitableDrawAlgorithmService implements DrawAlgorithmService {
     }
 
     private void excludeDisableAward(List<AwardProbabilityDTO> awardProbabilities, Set<Long> excludeAwardIds) {
-        if (CollUtil.isEmpty(awardProbabilities) || CollUtil.isEmpty(excludeAwardIds)) {
+        if (noAnyAward(awardProbabilities) || CollUtil.isEmpty(excludeAwardIds)) {
             return;
         }
         awardProbabilities.removeIf(a -> excludeAwardIds.contains(a.getAwardId()));

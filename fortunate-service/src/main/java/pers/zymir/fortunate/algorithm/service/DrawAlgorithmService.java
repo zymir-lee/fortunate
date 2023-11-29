@@ -7,5 +7,5 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface DrawAlgorithmService {
-    Optional<Long> executeAlgorithm(List<AwardProbabilityDTO> awardProbabilities, Set<Long> excludeAwardIds);
+    Optional<Long> execute(List<AwardProbabilityDTO> awardProbabilities, Set<Long> excludeAwardIds);
 }
