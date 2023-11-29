@@ -1,23 +1,37 @@
 package pers.zymir.fortunate.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class AwardProbabilityInfo {
-    @TableId(type = IdType.AUTO)
-    private Long id;
-    private Long awardAllocationId;
-    private Long campaignId;
+public class AwardProbabilityInfo extends BaseEntity {
+    private Long awardProbabilityInfoId;
+
+    /**
+     * 所属活动ID
+     */
+    private Long activityId;
+
+    /**
+     * 奖品ID
+     */
     private Long awardId;
+
+    /**
+     * 奖品数量
+     */
     private Integer awardCount;
+
+    /**
+     * 中奖概率 目前仅支持最低为0.01
+     */
     private BigDecimal probability;
-    private Integer distributeMode;
-    private Date createTime;
-    private Date updateTime;
-    private boolean deleted;
+
+    /**
+     * 发奖方式
+     */
+    private Integer awardDistributeMode;
 }
